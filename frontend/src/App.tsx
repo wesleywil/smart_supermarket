@@ -1,10 +1,19 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// Pages
+import Admin from "./management/pages/admin/admin";
+
+// Components
+
 import "./App.css";
 
 function App() {
   return (
-    <div classname="bg-red-200">
-      <h1 classname="text-8xl text-white">TEST</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/admin" element={<Admin />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
