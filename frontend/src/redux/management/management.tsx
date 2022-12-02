@@ -12,12 +12,15 @@ export const managementSlice = createSlice({
   name: "management",
   initialState,
   reducers: {
-    switch_menu: (state) => {
-      state.switch = !state.switch;
+    switch_print: (state) => {
+      state.switch = true;
+    },
+    switch_products: (state) => {
+      state.switch = false;
     },
   },
 });
 
-export const { switch_menu } = managementSlice.actions;
+export const { switch_print, switch_products } = managementSlice.actions;
 
 export default managementSlice.reducer;
