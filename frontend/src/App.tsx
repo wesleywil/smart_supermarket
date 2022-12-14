@@ -2,7 +2,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Pages
 import Homepage from "./pages/homepage/homepage";
+//  Management Pages
 import Admin from "./management/pages/admin/admin";
+//  Client Pages
+import Scan from "./client/pages/scan";
 
 // Components
 
@@ -14,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="client/scan" element={<Scan />} />
       </Routes>
     </BrowserRouter>
   );
