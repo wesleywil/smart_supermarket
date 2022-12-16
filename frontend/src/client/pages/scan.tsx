@@ -5,9 +5,9 @@ const Scan = () => {
   return (
     <div className="bg-[#eeeeeb] h-screen">
       <ScanBar />
-      <div className="flex flex-col items-center mt-4 text-[#8f51b5]">
-        <h1 className="text-3xl font-bold ">SCAN PRODUCTS</h1>
-        <h2 className="text-sm text-[#1f2630]">
+      <div className="flex flex-col items-center mt-2 text-[#8f51b5]">
+        <h1 className="text-2xl font-bold ">SCAN PRODUCTS</h1>
+        <h2 className="text-xs text-[#1f2630]">
           scan the products to add to cart
         </h2>
       </div>
