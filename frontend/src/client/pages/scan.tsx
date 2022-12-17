@@ -1,7 +1,19 @@
+import { useSelector } from "react-redux";
+import type { RootState } from "../../redux/store";
+
 import ScanBar from "../components/scan_bar/scan_bar.component";
 import ScanQrReader from "../components/scan_qr_reader/scan_qr_reader.component";
+import ListProducts from "../components/list_products/list_products.component";
+import { useEffect } from "react";
 
 const Scan = () => {
+  const switch_panels = useSelector(
+    (state: RootState) => state.switch_view.switch
+  );
+
+  useEffect(() => {
+    console.log("ssh", switch_panels);
+  }, [switch_panels]);
   return (
     <div className="bg-[#eeeeeb] h-screen">
       <ScanBar />
@@ -12,7 +24,9 @@ const Scan = () => {
         </h2>
       </div>
 
-      <ScanQrReader />
+      {switch_panels ? <ListProducts /> : <ScanQrReader />}
+      {/* <ScanQrReader /> */}
+      {/* <ListProducts /> */}
     </div>
   );
 };
