@@ -12,7 +12,7 @@ const ScanQrReader = () => {
       let html5QrcodeScanner = new Html5QrcodeScanner(
         "reader",
         { fps: 10, qrbox: { width: 250, height: 250 } },
-        /* verbose= */ false
+        false
       );
       html5QrcodeScanner.render(
         (data: any) => {
@@ -22,15 +22,15 @@ const ScanQrReader = () => {
         (err: any) => console.log("err ->", err)
       );
     }
-  }, [Html5QrcodeScanner]);
+  }, [Html5QrcodeScanner, result]);
 
   return (
     <div className="flex flex-col gap-2">
       <h1 className="w-screen p-2 break-words text-center">{result}</h1>
       <div
         id="reader"
-        className="self-center p-2"
-        style={{ width: "250px", height: "250px" }}
+        className="self-center p-2 rounded-xl"
+        style={{ width: "280px", height: "280px" }}
       ></div>
     </div>
   );
