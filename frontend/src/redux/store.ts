@@ -6,7 +6,7 @@ import clientReducer from "./client/client";
 export const store = configureStore({
   reducer: {
     management: managementReducer,
-    switch_view: clientReducer,
+    client: clientReducer,
   },
 });
 
