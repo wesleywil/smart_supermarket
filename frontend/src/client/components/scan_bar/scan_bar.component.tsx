@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { switch_view } from "../../../redux/client/switch_view/switch_view";
+import { switch_view } from "../../../redux/client/client";
 
 import Logo from "../../../assets/SuperMarketLogo.svg";
 

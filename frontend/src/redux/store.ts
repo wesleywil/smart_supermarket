@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import managementReducer from "./management/management";
-import switchViewReducer from "./client/switch_view/switch_view";
+import clientReducer from "./client/client";
 
 export const store = configureStore({
   reducer: {
     management: managementReducer,
-    switch_view: switchViewReducer,
+    switch_view: clientReducer,
   },
 });
 
