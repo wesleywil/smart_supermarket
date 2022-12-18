@@ -9,13 +9,14 @@ const ScanBar = () => {
   const btnName = useSelector(
     (state: RootState) => state.client.switchInfo.btnName
   );
+  const total = useSelector((state: RootState) => state.client.total);
   return (
     <div className="flex flex-col items-center bg-[#1f2630] text-[#eeeeeb] text-xl    px-4 py-2">
       <div className="flex flex-col items-center gap-1 pt-2 bg-[#eeeeeb] text-[#8f51b5] px-4 py-2 rounded-xl">
         <img src={Logo} alt="supermarket logo" className="w-8" />
       </div>
 
-      <h1 className="mt-2 ">$ 0.00</h1>
+      <h1 className="mt-2 ">$ {total}</h1>
 
       <div className="w-full mt-2 flex justify-center py-2 border-y-2 border-[#8f51b5] ">
         <h1>Wesley Wilson</h1>

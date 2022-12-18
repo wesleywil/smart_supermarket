@@ -12,6 +12,7 @@ export interface ClientState {
   switch: boolean;
   switchInfo: { btnName: string; title: string; subtitle?: string };
   products?: Array<Product>;
+  total: number;
 }
 
 const initialState: ClientState = {
@@ -22,6 +23,7 @@ const initialState: ClientState = {
     subtitle: "scan the products to add to cart",
   },
   products: productList,
+  total: 0.0,
 };
 
 export const clientSlice = createSlice({
@@ -38,6 +40,9 @@ export const clientSlice = createSlice({
         };
       }
     },
+    sumTotal: (state, action: PayloadAction<number>) => {
+      state.total = action.payload;
+    },
     removeItem: (state, action: PayloadAction<number>) => {
       state.products = state.products?.filter(
         (item) => item.id !== action.payload
@@ -46,6 +51,6 @@ export const clientSlice = createSlice({
   },
 });
 
-export const { switch_view, removeItem } = clientSlice.actions;
+export const { switch_view, sumTotal, removeItem } = clientSlice.actions;
 
 export default clientSlice.reducer;
