@@ -127,3 +127,4 @@ sftp-config.json
 
 # Migrations
 products/migrations
+accounts/migrations
