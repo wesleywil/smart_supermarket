@@ -128,3 +128,6 @@ sftp-config.json
 # Migrations
 products/migrations
 accounts/migrations
+
+# QRCODE IMAGES
+static/images/products/qrcode
