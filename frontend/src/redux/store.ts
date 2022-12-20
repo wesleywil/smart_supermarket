@@ -8,7 +8,7 @@ export const store = configureStore({
   reducer: {
     management: managementReducer,
     client: clientReducer,
-    product: productReducer,
+    products: productReducer,
   },
 });
 

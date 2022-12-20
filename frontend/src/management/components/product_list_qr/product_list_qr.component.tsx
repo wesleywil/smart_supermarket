@@ -1,9 +1,11 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "../../../redux/store";
 import { qr_close } from "../../../redux/management/management";
 
 import { FaTimes } from "react-icons/fa";
 
 const ProductListQr = () => {
+  const qrcode = useSelector((state: RootState) => state.management.qr_code);
   const dispatch = useDispatch();
   return (
     <div className="pb-8 pt-2 px-2 bg-[#1f2630]/40 backdrop-blur-sm border border-[#8f51b5] rounded-xl absolute mx-auto inset-80 w-80 h-80 ">
@@ -17,7 +19,9 @@ const ProductListQr = () => {
         </button>
       </div>
 
-      <div className=" w-64 h-64 mx-auto bg-[#eeeeeb]"></div>
+      <div className=" w-64 h-64 mx-auto bg-blue-400">
+        <img src={qrcode} alt="qrcode of product" />
+      </div>
     </div>
   );
 };

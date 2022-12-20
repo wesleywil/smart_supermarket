@@ -1,6 +1,8 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { form_open } from "../../../redux/management/management";
 import type { RootState } from "../../../redux/store";
+import { form_open } from "../../../redux/management/management";
+import { fetchProducts } from "../../../redux/management/products/products";
 
 import NewProduct from "../new_product/new_product.component";
 import ProductListItem from "../product_list_item/product_list_item.component";
@@ -18,7 +20,15 @@ const ProductList = () => {
   const closedDelete = useSelector(
     (state: RootState) => state.management.delete_closed
   );
-  const dispatch = useDispatch();
+  const status = useSelector((state: RootState) => state.products.status);
+  const products = useSelector((state: RootState) => state.products.products);
+  const dispatch = useDispatch<any>();
+
+  useEffect(() => {
+    if (status === "idle") {
+      dispatch(fetchProducts());
+    }
+  }, [status, products]);
   return (
     <div className=" gap-2 w-full p-4">
       <h1 className="text-center text-[#eeeeeb] text-6xl underline">
@@ -36,11 +46,16 @@ const ProductList = () => {
       {closedDelete ? "" : <ProductListItemDelete />}
 
       <div className="flex flex-col gap-1 mt-1">
-        <ProductListItem />
-        <ProductListItem />
-        <ProductListItem />
-        <ProductListItem />
-        <ProductListItem />
+        {products.map((item) => (
+          <ProductListItem
+            key={item.id}
+            id={item.id}
+            name={item.name}
+            description={item.description}
+            qrcode={item.qrcode}
+            price={item.price}
+          />
+        ))}
       </div>
 
       {closedform ? "" : <NewProduct />}

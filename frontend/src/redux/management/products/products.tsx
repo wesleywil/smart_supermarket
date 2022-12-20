@@ -10,7 +10,7 @@ export interface ProductState {
 }
 
 export interface ProductListState {
-  products: Array<ProductListState>;
+  products: Array<ProductState>;
   status: string;
   error: any;
 }
@@ -25,12 +25,13 @@ export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async () => {
     const res = await axios.get("http://localhost:8000/products/?format=json");
+    console.log("DATA=> ", res.data);
     return res.data;
   }
 );
 
 export const productSlice = createSlice({
-  name: "product",
+  name: "products",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -38,9 +39,9 @@ export const productSlice = createSlice({
       .addCase(fetchProducts.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchProducts.fulfilled, (state, { payload }) => {
+      .addCase(fetchProducts.fulfilled, (state, action: PayloadAction<any>) => {
         state.status = "succeeded";
-        state.products = payload;
+        state.products = action.payload;
       })
       .addCase(fetchProducts.rejected, (state) => {
         state.error = "error";

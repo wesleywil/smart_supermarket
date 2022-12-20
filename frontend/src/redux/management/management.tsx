@@ -1,10 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface ManagementState {
   switch: boolean;
   form_closed: boolean;
   qr_closed: boolean;
   delete_closed: boolean;
+  qr_code: string;
 }
 
 const initialState: ManagementState = {
@@ -12,6 +13,7 @@ const initialState: ManagementState = {
   form_closed: true,
   qr_closed: true,
   delete_closed: true,
+  qr_code: "",
 };
 
 export const managementSlice = createSlice({
@@ -33,8 +35,9 @@ export const managementSlice = createSlice({
     qr_close: (state) => {
       state.qr_closed = true;
     },
-    qr_open: (state) => {
+    qr_open: (state, { payload }) => {
       state.qr_closed = false;
+      state.qr_code = payload;
     },
     delete_close: (state) => {
       state.delete_closed = true;
