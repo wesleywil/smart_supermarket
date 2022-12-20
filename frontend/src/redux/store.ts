@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import managementReducer from "./management/management";
 import clientReducer from "./client/client";
+import productReducer from "./management/products/products";
 
 export const store = configureStore({
   reducer: {
     management: managementReducer,
     client: clientReducer,
+    product: productReducer,
   },
 });
 
