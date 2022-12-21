@@ -4,6 +4,7 @@ import {
   qr_open,
   delete_open,
 } from "../../../redux/management/management";
+import { selectProductById } from "../../../redux/management/products/products";
 
 import { FaTrashAlt, FaEdit, FaQrcode } from "react-icons/fa";
 
@@ -38,7 +39,10 @@ const ProductListItem = ({
           <FaQrcode />
         </button>
         <button
-          onClick={() => dispatch(form_open())}
+          onClick={() => {
+            dispatch(form_open());
+            dispatch(selectProductById(id));
+          }}
           className="border-r hover:opacity-80 border-[#8f51b5] pr-2"
         >
           <FaEdit />

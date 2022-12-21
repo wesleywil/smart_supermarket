@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../../redux/store";
-import { form_open } from "../../../redux/management/management";
+import { form_open, form_close } from "../../../redux/management/management";
 import { fetchProducts } from "../../../redux/management/products/products";
 
 import NewProduct from "../new_product/new_product.component";
@@ -25,8 +25,9 @@ const ProductList = () => {
   const dispatch = useDispatch<any>();
 
   useEffect(() => {
-    if (status === "idle") {
+    if (status === "idle" || status === "product updated") {
       dispatch(fetchProducts());
+      dispatch(form_close());
     }
   }, [status, products]);
   return (

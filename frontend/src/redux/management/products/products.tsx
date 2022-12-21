@@ -11,12 +11,14 @@ export interface ProductState {
 
 export interface ProductListState {
   products: Array<ProductState>;
+  product: any;
   status: string;
   error: any;
 }
 
 const initialState: ProductListState = {
   products: [],
+  product: null,
   status: "idle",
   error: null,
 };
@@ -30,10 +32,31 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
+export const updateProduct = createAsyncThunk(
+  "products/updateProduct",
+  async (data: any) => {
+    console.log("UPDATING.... PRODUCT");
+
+    const res = await axios.put(
+      `http://localhost:8000/products/${data.id}/`,
+      data
+    );
+    console.log("UPDATED DATA=> ", res.data);
+    return res.data;
+  }
+);
+
 export const productSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    selectProductById: (state, action: PayloadAction<number>) => {
+      state.product = state.products.find(({ id }) => id === action.payload);
+    },
+    cleanProduct: (state) => {
+      state.product = {};
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
@@ -45,8 +68,19 @@ export const productSlice = createSlice({
       })
       .addCase(fetchProducts.rejected, (state) => {
         state.error = "error";
+      })
+      .addCase(updateProduct.pending, (state) => {
+        state.status = "trying the update";
+      })
+      .addCase(updateProduct.fulfilled, (state) => {
+        state.status = "product updated";
+      })
+      .addCase(updateProduct.rejected, (state) => {
+        state.error = "error while updating product";
       });
   },
 });
+
+export const { selectProductById, cleanProduct } = productSlice.actions;
 
 export default productSlice.reducer;
