@@ -26,11 +26,11 @@ const ProductListItem = ({
   const dispatch = useDispatch();
   return (
     <div className="bg-[#eeeeeb] flex flex-row gap-2 p-2 rounded-xl text-3xl w-11/12 justify-between mx-auto text-[#8f51b5]">
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 w-1/3 overflow-y-hidden">
         <h1>{name}</h1>
-        <h3 className="text-base">Category: category</h3>
+        {/* <h3 className="text-base">Category: category</h3> */}
       </div>
-      <h1 className="self-center">${price}</h1>
+      <h1 className="self-center w-1/3 text-center">${price}</h1>
       <div className="flex flex-row gap-4 px-2">
         <button
           onClick={() => dispatch(qr_open(qrcode))}
