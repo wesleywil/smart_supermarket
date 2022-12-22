@@ -4,20 +4,21 @@ import type { RootState, AppDispatch } from "../../../redux/store";
 import { form_close } from "../../../redux/management/management";
 import {
   cleanProduct,
+  createProduct,
   updateProduct,
 } from "../../../redux/management/products/products";
 
 import { FaTimes } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
-const NewProduct = () => {
+const FormProduct = () => {
   const product = useSelector((state: RootState) => state.products.product);
   const dispatch = useDispatch<AppDispatch>();
 
   const [isProduct, setIsProduct] = useState("New Product");
 
   useEffect(() => {
-    if (product.id) {
+    if (product) {
       setIsProduct("Update Product");
     } else {
       setIsProduct("New Product");
@@ -35,27 +36,22 @@ const NewProduct = () => {
     const description = target.description.value;
     const price = target.price.value;
 
-    const data = {
-      id: product.id,
-      name: name,
-      description: description,
-      price: price,
-    };
-
-    // const data: {
-    //   id: number;
-    //   name: string;
-    //   description: string;
-    //   qrcode: string;
-    //   price: number;
-    // } = {
-    //   id: product.id,
-    //   name: name,
-    //   description: description,
-    //   price: price,
-    //   qrcode: product.qrcode,
-    // };
-    dispatch(updateProduct(data));
+    if (product) {
+      const data = {
+        id: product.id,
+        name: name,
+        description: description,
+        price: price,
+      };
+      dispatch(updateProduct(data));
+    } else {
+      const data = {
+        name: name,
+        description: description,
+        price: price,
+      };
+      dispatch(createProduct(data));
+    }
   };
   return (
     <div className="position-12 absolute border bg-[#1f2630]/60 backdrop-blur-sm inset-80 w-2/6 mx-auto rounded-xl overflow-hidden">
@@ -78,27 +74,21 @@ const NewProduct = () => {
           placeholder="Product's Name"
           className="py-2 pl-2"
           name="name"
-          defaultValue={product.name ? product.name : ""}
+          defaultValue={product ? product.name : ""}
         />
         <textarea
           placeholder="Description"
           className="py-2 pl-2"
           name="description"
-          defaultValue={product.description ? product.description : ""}
+          defaultValue={product ? product.description : ""}
         ></textarea>
         <input
           type="number"
           placeholder="Price"
           className="py-2 pl-2"
           name="price"
-          defaultValue={product.price ? product.price : 0.0}
+          defaultValue={product ? product.price : 0.0}
         />
-        {/* <select className="py-2 pl-2 font-semibold">
-          <option>Category</option>
-          <option value="0">Candies</option>
-          <option value="1">Hortifruit</option>
-          <option value="2">Breads</option>
-        </select> */}
         <div className="flex justify-center gap-2 mt-2">
           <button className="bg-[#eeeeeb] text-xl px-2 rounded">Save</button>
           <button
@@ -117,4 +107,4 @@ const NewProduct = () => {
   );
 };
 
-export default NewProduct;
+export default FormProduct;

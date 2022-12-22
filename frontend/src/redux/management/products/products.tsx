@@ -32,6 +32,17 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
+export const createProduct = createAsyncThunk(
+  "products/createProduct",
+  async (data: any) => {
+    console.log("CREATING.... PRODUCT");
+
+    const res = await axios.post(`http://localhost:8000/products/`, data);
+    console.log("CREATED DATA=> ", res.data);
+    return res.data;
+  }
+);
+
 export const updateProduct = createAsyncThunk(
   "products/updateProduct",
   async (data: any) => {
@@ -77,6 +88,15 @@ export const productSlice = createSlice({
       })
       .addCase(updateProduct.rejected, (state) => {
         state.error = "error while updating product";
+      })
+      .addCase(createProduct.pending, (state) => {
+        state.status = "trying the creation";
+      })
+      .addCase(createProduct.fulfilled, (state) => {
+        state.status = "product created";
+      })
+      .addCase(createProduct.rejected, (state) => {
+        state.error = "error while creating new product";
       });
   },
 });

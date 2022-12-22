@@ -4,7 +4,7 @@ import type { RootState } from "../../../redux/store";
 import { form_open, form_close } from "../../../redux/management/management";
 import { fetchProducts } from "../../../redux/management/products/products";
 
-import NewProduct from "../new_product/new_product.component";
+import FormProduct from "../form_product/form_product.component";
 import ProductListItem from "../product_list_item/product_list_item.component";
 import ProductListSearch from "../product_list_search/product_list_search.component";
 import ProductListQr from "../product_list_qr/product_list_qr.component";
@@ -25,7 +25,11 @@ const ProductList = () => {
   const dispatch = useDispatch<any>();
 
   useEffect(() => {
-    if (status === "idle" || status === "product updated") {
+    if (
+      status === "idle" ||
+      status === "product updated" ||
+      status === "product created"
+    ) {
       dispatch(fetchProducts());
       dispatch(form_close());
     }
@@ -59,7 +63,7 @@ const ProductList = () => {
         ))}
       </div>
 
-      {closedform ? "" : <NewProduct />}
+      {closedform ? "" : <FormProduct />}
       {closedQr ? "" : <ProductListQr />}
     </div>
   );
