@@ -1,11 +1,10 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../../redux/store";
 import { selectProductById } from "../../../redux/management/products/products";
 
-import { FaPlus, FaMinus, FaPrint } from "react-icons/fa";
-
 import Label from "../label/label.component";
-import { useEffect } from "react";
+import PrintOptions from "../print_options/print_options.component";
 
 const PrintLabels = () => {
   const products = useSelector((state: RootState) => state.products.products);
@@ -39,27 +38,7 @@ const PrintLabels = () => {
       <div className="self-center">
         <Label />
       </div>
-      <div className="bg-[#eeeeeb] w-96 mx-auto p-4 rounded-xl">
-        <h1 className="text-center text-4xl text-[#1f2630] font-bold">
-          Options
-        </h1>
-        <div className="flex gap-3 justify-center">
-          <h1 className="self-center text-2xl">Quantity</h1>
-          <div className="flex items-center text-xl">
-            <button className="bg-[#1f2630] text-[#eeeeeb] hover:opacity-90 p-2 rounded">
-              <FaMinus />
-            </button>
-            <span className="p-2 font-bold">1</span>
-            <button className="bg-[#1f2630] text-[#eeeeeb]  hover:opacity-90 p-2 rounded">
-              <FaPlus />
-            </button>
-          </div>
-
-          <button className="ml-4 bg-[#8f51b5] hover:bg-[#8f51b5]/80 text-[#1f2630] hover:text-[#eeeeeb] p-2 rounded-xl text-5xl transition duration-700 easy-in-out">
-            <FaPrint />
-          </button>
-        </div>
-      </div>
+      <PrintOptions />
     </div>
   );
 };

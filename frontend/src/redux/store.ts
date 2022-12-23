@@ -3,12 +3,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import managementReducer from "./management/management";
 import clientReducer from "./client/client";
 import productReducer from "./management/products/products";
+import printReducer from "./management/print/print";
 
 export const store = configureStore({
   reducer: {
     management: managementReducer,
     client: clientReducer,
     products: productReducer,
+    print: printReducer,
   },
 });
 
