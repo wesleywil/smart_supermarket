@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./pages/homepage/homepage";
 //  Management Pages
 import Admin from "./management/pages/admin/admin";
+import Print from "./management/pages/print/print";
 //  Client Pages
 import Scan from "./client/pages/scan";
 
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/print" element={<Print />} />
         <Route path="client/scan" element={<Scan />} />
       </Routes>
     </BrowserRouter>

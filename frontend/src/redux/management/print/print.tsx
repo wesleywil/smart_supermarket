@@ -2,12 +2,18 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export interface PrintState {
   quantity: number;
-  size: string;
+  print_size: string;
+  qr_size: string;
+  text_size: string;
+  text_price: string;
 }
 
 const initialState: PrintState = {
   quantity: 0,
-  size: "medium",
+  print_size: "24rem",
+  qr_size: "16rem",
+  text_size: "text-2xl",
+  text_price: "text-6xl",
 };
 
 export const printSlice = createSlice({
@@ -25,16 +31,28 @@ export const printSlice = createSlice({
     change_size: (state, { payload }) => {
       switch (payload) {
         case "large":
-          state.size = "large";
+          state.print_size = "24rem";
+          state.qr_size = "16rem";
+          state.text_size = "text-2xl";
+          state.text_price = "text-6xl";
           break;
         case "medium":
-          state.size = "medium";
+          state.print_size = "18rem";
+          state.qr_size = "10rem";
+          state.text_size = "text-xl";
+          state.text_price = "text-2xl";
           break;
         case "small":
-          state.size = "small";
+          state.print_size = "10rem";
+          state.qr_size = "7rem";
+          state.text_size = "hidden";
+          state.text_price = "text-xs";
           break;
         default:
-          state.size = "medium";
+          state.print_size = "24rem";
+          state.qr_size = "16rem";
+          state.text_size = "text-2xl";
+          state.text_price = "text-6xl";
       }
     },
   },

@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../../redux/store";
+import { useNavigate } from "react-router-dom";
 import {
   add_quantity,
   sub_quantity,
@@ -9,6 +10,7 @@ import {
 import { FaPlus, FaMinus, FaPrint } from "react-icons/fa";
 
 const PrintOptions = () => {
+  const navigate = useNavigate();
   const quantity = useSelector((state: RootState) => state.print.quantity);
   const print_size = useSelector((state: RootState) => state.print.size);
   const dispatch = useDispatch();
@@ -55,7 +57,10 @@ const PrintOptions = () => {
           </button>
         </div>
 
-        <button className="ml-4 bg-[#8f51b5] hover:bg-[#8f51b5]/80 text-[#1f2630] hover:text-[#eeeeeb] p-2 rounded-xl text-5xl transition duration-700 easy-in-out">
+        <button
+          onClick={() => navigate("/admin/print")}
+          className="ml-4 bg-[#8f51b5] hover:bg-[#8f51b5]/80 text-[#1f2630] hover:text-[#eeeeeb] p-2 rounded-xl text-5xl transition duration-700 easy-in-out"
+        >
           <FaPrint />
         </button>
       </div>
