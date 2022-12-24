@@ -1,6 +1,7 @@
 import qrcode
 from django.db import models
 from django.core.files import File
+from django.db.models.signals import post_save
 
 from PIL import Image, ImageDraw
 from io import BytesIO
@@ -17,12 +18,13 @@ class Product(models.Model):
         return self.name
     
     def save(self, *args, **kwargs):
+        super().save()
         if(not self.qrcode):
-            qr_image = qrcode.make(self.name)
-            qr_offset = Image.new('RGB', (310, 310), 'white')
-            draw_img = ImageDraw.Draw(qr_offset)
-            qr_offset.paste(qr_image)
-            file_name = f'{self.name}-{random.random()}qr.png'
+            json = {"id":self.id, "name":self.name}
+            qr_image = qrcode.make(json)
+            qr_offset = Image.new('RGB', (350, 350), 'white')
+            qr_offset.paste(qr_image,(-10,-5))
+            file_name = f'{self.name}-{self.id}qr.png'
             stream = BytesIO()
             qr_offset.save(stream, 'PNG')
             self.qrcode.save(file_name, File(stream),save=False)
