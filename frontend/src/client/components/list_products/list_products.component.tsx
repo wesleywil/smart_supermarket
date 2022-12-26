@@ -11,7 +11,7 @@ const ListProducts = () => {
   useEffect(() => {
     let total = 0.0;
     productList?.map((item) => {
-      total += item.price * item.quantity;
+      total += item.price * item.quantity!;
     });
     console.log("TOTAL==> ", total);
     dispatch(sumTotal(total));
