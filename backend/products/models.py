@@ -11,7 +11,7 @@ import random
 class Product(models.Model):
     name = models.CharField(max_length=20)
     description = models.TextField()
-    price = models.DecimalField(max_digits=4, default=0.00, decimal_places=2)
+    price = models.IntegerField()
     qrcode = models.ImageField(upload_to='products/qrcode', null=True, blank=True)
 
     def __str__(self):
@@ -20,9 +20,9 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         super().save()
         if(not self.qrcode):
-            json = {"id":self.id, "name":self.name}
+            json = {"id":self.id, "name":self.name, "price":self.price}
             qr_image = qrcode.make(json)
-            qr_offset = Image.new('RGB', (350, 350), 'white')
+            qr_offset = Image.new('RGB', (400, 400), 'white')
             qr_offset.paste(qr_image,(-10,-5))
             file_name = f'{self.name}-{self.id}qr.png'
             stream = BytesIO()
