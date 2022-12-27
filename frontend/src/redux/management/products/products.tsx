@@ -65,7 +65,7 @@ export const productSlice = createSlice({
       state.product = state.products.find(({ id }) => id === action.payload);
     },
     cleanProduct: (state) => {
-      state.product = {};
+      state.product = null;
     },
   },
   extraReducers: (builder) => {

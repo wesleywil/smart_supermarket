@@ -26,7 +26,7 @@ const FormProduct = () => {
   }, [isProduct, product]);
 
   const formSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
+    //e.preventDefault();
     const target = e.target as typeof e.target & {
       name: { value: string };
       description: { value: string };
@@ -54,7 +54,7 @@ const FormProduct = () => {
     }
   };
   return (
-    <div className="position-12 absolute border bg-[#1f2630]/60 backdrop-blur-sm inset-80 w-2/6 mx-auto rounded-xl overflow-hidden">
+    <div className="position-24 absolute border bg-[#1f2630]/60 backdrop-blur-sm inset-32 h-80 w-2/6 mx-auto rounded-xl overflow-hidden">
       <div className="flex justify-between px-4 mt-2">
         <h1 className=" text-[#eeeeeb] text-xl pt-2 px-4">{isProduct}</h1>
         <button
