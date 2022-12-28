@@ -74,6 +74,15 @@ export const productSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
+    filterByName: (state, { payload }) => {
+      let filteredProducts = state.products.filter((item) => {
+        return item.name.toLowerCase().includes(payload);
+      });
+      return {
+        ...state,
+        products: filteredProducts,
+      };
+    },
     selectProductById: (state, action: PayloadAction<number>) => {
       state.product = state.products.find(({ id }) => id === action.payload);
     },
@@ -123,6 +132,7 @@ export const productSlice = createSlice({
   },
 });
 
-export const { selectProductById, cleanProduct } = productSlice.actions;
+export const { filterByName, selectProductById, cleanProduct } =
+  productSlice.actions;
 
 export default productSlice.reducer;
