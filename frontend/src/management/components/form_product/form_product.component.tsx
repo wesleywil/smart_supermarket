@@ -26,7 +26,7 @@ const FormProduct = () => {
   }, [isProduct, product]);
 
   const formSubmit = (e: React.SyntheticEvent) => {
-    //e.preventDefault();
+    e.preventDefault();
     const target = e.target as typeof e.target & {
       name: { value: string };
       description: { value: string };
@@ -44,6 +44,8 @@ const FormProduct = () => {
         price: price,
       };
       dispatch(updateProduct(data));
+      dispatch(form_close());
+      dispatch(cleanProduct());
     } else {
       const data = {
         name: name,
@@ -51,6 +53,7 @@ const FormProduct = () => {
         price: price,
       };
       dispatch(createProduct(data));
+      dispatch(form_close());
     }
   };
   return (
