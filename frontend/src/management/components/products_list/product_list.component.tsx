@@ -28,7 +28,8 @@ const ProductList = () => {
     if (
       status === "idle" ||
       status === "product updated" ||
-      status === "product created"
+      status === "product created" ||
+      status === "product deleted"
     ) {
       dispatch(fetchProducts());
       dispatch(form_close());

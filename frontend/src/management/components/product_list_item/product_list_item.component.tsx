@@ -48,7 +48,10 @@ const ProductListItem = ({
           <FaEdit />
         </button>
         <button
-          onClick={() => dispatch(delete_open())}
+          onClick={() => {
+            dispatch(delete_open());
+            dispatch(selectProductById(id));
+          }}
           className="hover:opacity-80"
         >
           <FaTrashAlt />
