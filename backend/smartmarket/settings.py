@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # Third party
     'rest_framework',
     'corsheaders',
+    'knox',
 ]
 
 MIDDLEWARE = [
@@ -149,3 +150,17 @@ AUTH_USER_MODEL = 'accounts.User'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5000",
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES':[
+        #
+        'rest_framework.authentication.BasicAuthentication',
+        #
+        'rest_framework.authentication.SessionAuthentication',
+            'knox.auth.TokenAuthentication',
+    ]
+}
+
+REST_KNOX = {
+  'USER_SERIALIZER': 'knox.serializers.UserSerializer',
+}
