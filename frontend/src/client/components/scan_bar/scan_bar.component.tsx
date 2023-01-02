@@ -23,7 +23,7 @@ const ScanBar = () => {
       </div>
       <button
         onClick={() => dispatch(switch_view())}
-        className="w-1/2 mt-2 bg-[#8f51b5] border-2 border-[#8f51b5] hover:bg-[#1f2630] rounded-xl transition duration-700 ease-in-out"
+        className="w-1/2 md:w-40  mt-2 bg-[#8f51b5] border-2 border-[#8f51b5] hover:bg-[#1f2630] rounded-xl transition duration-700 ease-in-out"
       >
         {btnName}
       </button>

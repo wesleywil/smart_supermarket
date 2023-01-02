@@ -59,7 +59,7 @@ const ScanQrReader = () => {
       </h1>
       <button
         onClick={() => addToCart()}
-        className="bg-[#1f2630] text-[#eeeeeb] px-2 py-1"
+        className="md:w-40 mx-auto bg-[#1f2630] text-[#eeeeeb] hover:opacity-90 font-semibold px-2 py-1 rounded-xl"
       >
         Add to cart
       </button>
